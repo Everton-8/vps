@@ -42,12 +42,12 @@ if [ "$solo" = "s" ]; then
 clear
 rm /bin/ovpn/ &>/dev/null
 wget -O /bin/ovpn -o /dev/null https://raw.githubusercontent.com/Everton-8/vps/master/ovpn.bash
-chmod +x /bin/ovpn.bash
+chmod +x /bin/ovpn
 clear
 sleep 1
 echo -e "\033[01;32m INICIANDO....."
 sleep 1
-ovpn.bash
+ovpn
 fi
 if [ "$solo" = "n" ]; then
 clear
