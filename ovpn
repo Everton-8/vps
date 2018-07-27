@@ -38,7 +38,7 @@ elif [[ -e /etc/centos-release || -e /etc/redhat-release ]]; then
 	GROUPNAME=nobody
 	RCLOCAL='/etc/rc.d/rc.local'
 else
-	echo "Looks like you aren't running this installer on a Debian, Ubuntu or CentOS system"
+	echo "Parece que você não está executando este instalador em um sistema Debian, Ubuntu ou CentOS"
 	exit 5
 fi
 
@@ -109,9 +109,9 @@ else
 fi
 
 clear
-echo -e "\033[36;37m PAINEL DE GERENCIAMENTO DO OPENVPN, OS ARQUIVOS SERÃO SALVOS NA PASTA ROOT\033[0m"
-echo -e "\033[01;31m BY @e8th4eve, @Fenix_linuxr"
-echo -e "\033[01;31m Modificações e adaptações por Kingsman"
+echo -e "\033[36;35m PAINEL DE GERENCIAMENTO DO OPENVPN, OS ARQUIVOS SERÃO SALVOS NA PASTA ROOT\033[0m"
+echo -e "\033[01;33m Alterado por R3V1V3R BY @judiba, @e8th4eve, @Fenix_linuxr"
+echo -e "\033[01;33m Modificações e adaptações por JUDIBA"
 echo -e "\033[0;35m------------------------------------------------------------\033[0m"
 echo -e "\033[1;36m[\033[1;31m1\033[1;36m] CRIAR USUÁRIO \033[1;30m(CRIA USUÁRIOS)\033[1;36m
 [\033[1;31m2\033[1;36m] REMOVER USUÁRIO \033[1;30m(REMOVE UM USUÁRIO)\033[1;36m
@@ -162,10 +162,10 @@ valid=$(date '+%C%y-%m-%d' -d " +$daysrnf days")
 datexp=$(date "+%d/%m/%Y" -d "+ $daysrnf days")
 useradd -M -s /bin/false -d /home/ovpn/ $CLIENT -e $valid
 usermod -p $(openssl passwd -1 $senha) $CLIENT
-touch /etc/VpsPackdir/senha/$CLIENT
-touch /etc/VpsPackdir/limite/$CLIENT
-echo -e "$senha" > /etc/VpsPackdir/senha/$CLIENT
-echo -e "OPENVPN" > /etc/VpsPackdir/limite/$CLIENT
+touch /etc/Vps/senha/$CLIENT
+touch /etc/Vps/limite/$CLIENT
+echo -e "$senha" > /etc/Vps/senha/$CLIENT
+echo -e "OPENVPN" > /etc/Vps/limite/$CLIENT
 echo -e "\033[1;36mCRIADO COM SUCESSO \033[0m"
 echo -e "\033[1;36mPara encontrar o arquivo vá no menu do ADM>2>8 \033[0m"
 sleep 4s
@@ -174,10 +174,10 @@ exit
   else
 useradd -M -s /bin/false -d /home/ovpn/ $CLIENT
 usermod -p $(openssl passwd -1 $senha) $CLIENT
-touch /etc/VpsPackdir/senha/$CLIENT
-touch /etc/VpsPackdir/limite/$CLIENT
-echo -e "$senha" > /etc/VpsPackdir/senha/$CLIENT
-echo -e "OPENVPN" > /etc/VpsPackdir/limite/$CLIENT
+touch /etc/Vps/senha/$CLIENT
+touch /etc/Vps/limite/$CLIENT
+echo -e "$senha" > /etc/Vps/senha/$CLIENT
+echo -e "OPENVPN" > /etc/Vps/limite/$CLIENT
 echo -e "\033[1;36mCRIADO COM SUCESSO \033[0m"
 echo -e "\033[1;36mPara encontrar o arquivo vá no menu do ADM>2>8 \033[0m"
 ovpn
@@ -223,8 +223,8 @@ cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
 chown nobody:$GROUPNAME /etc/openvpn/crl.pem
 echo ""
 userdel --force $CLIENT
-rm -rf /etc/VpsPackdir/senha/$CLIENT
-rm -rf /etc/VpsPackdir/limite/$CLIENT
+rm -rf /etc/Vps/senha/$CLIENT
+rm -rf /etc/Vps/limite/$CLIENT
 echo -e "\033[1;31m"
 echo "REMOVIDO"
 echo -e "\033[0m"
@@ -252,8 +252,8 @@ cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
 chown nobody:$GROUPNAME /etc/openvpn/crl.pem
 echo ""
 userdel --force $userss
-rm -rf /etc/VpsPackdir/senha/$userss
-rm -rf /etc/VpsPackdir/limite/$userss
+rm -rf /etc/Vps/senha/$userss
+rm -rf /etc/Vps/limite/$userss
 done
 echo -e "\033[1;31m------------------------------------------------------------\033[0m"
 echo "REMOVIDOS"
@@ -345,8 +345,8 @@ rm -rf /etc/openvpn/crl.pem
 cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
 chown nobody:$GROUPNAME /etc/openvpn/crl.pem
 userdel --force $user
-rm -rf /etc/VpsPackdir/senha/$user
-rm -rf /etc/VpsPackdir/limite/$user
+rm -rf /etc/Vps/senha/$user
+rm -rf /etc/Vps/limite/$user
 sleep 1s
 done 
 tput sgr0 
@@ -472,10 +472,10 @@ exit
 exit
 ;;
 (s|S)
-mkdir /etc/VpsPackdir
+mkdir /etc/Vps
 mkdir /etc/adm
-mkdir /etc/VpsPackdir/limite
-mkdir /etc/VpsPackdir/senha
+mkdir /etc/Vps/limite
+mkdir /etc/Vps/senha
 mkdir /etc/adm/modulo
 clear
 ;;
@@ -806,7 +806,7 @@ echo -e "\033[1;31mNÃO FOI IDENTIFICADO PROXY SQUID EM SUA VPS, DESEJA INSTALÁ
 read -p "[s/n] 
 " squiid
 if [ "$squiid" = "s" ]; then
-wget  -O /bin/sq3 -o /dev/null https://raw.githubusercontent.com/Darkbot345/OVPN/master/sq3
+wget  -O /bin/sq3 -o /dev/null https://raw.githubusercontent.com/Everton-8/vps/master/sq3
 chmod +x /bin/sq3
 sleep 1
 sq3
@@ -860,7 +860,8 @@ comp-lzo
 setenv opt block-outside-dns
 key-direction 1
 verb 3
-auth-user-pass" > /etc/openvpn/client-common.txt
+auth-user-pass
+auth-nocache" > /etc/openvpn/client-common.txt
 #################################
    echo -e "\033[0m"
 	echo ""
