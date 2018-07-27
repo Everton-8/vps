@@ -56,4 +56,5 @@ sleep 2
 clear
 fi
 if [ "$sono" != "s" ]; then
-exit;;
+clear
+exit
