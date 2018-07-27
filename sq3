@@ -97,7 +97,7 @@ apt-get update -y 1>/dev/null 2>/dev/null
 apt-get upgrade -y 1>/dev/null 2>/dev/null
 apt-get install squid3 -y 1>/dev/null 2>/dev/null
 echo -e "$azulClaro
-INICIANDO INSTALAÇÃO...$fim"
+INICIANDO INSTALAÃ‡ÃƒO...$fim"
 sleep 3s
 echo -e "\033[0m"
 sleep 1s
@@ -116,7 +116,7 @@ else
 echo -e "\033[1;36mQUAL SISTEMA ESTA USANDO?
 [1] DEBIAN
 [2] UBUNTO"
-read -p "opção: " opt
+read -p "opÃ§Ã£o: " opt
   fi
 fi
 
@@ -179,14 +179,14 @@ http_port $spt2
 http_port $spt3
 http_port $spt4
 
-visible_hostname PROXYSERVER
+visible_hostname Everton888.pr0xy
 
 forwarded_for off
 pipeline_prefetch on
 " > /etc/squid3/squid.conf
 echo -e "$azulClaro
 CONFIGURANDO...$fim"
-echo -e "$cyanClaro REINICIANDO SERVIÇOS...$fim"
+echo -e "$cyanClaro REINICIANDO SERVIÃ‡OS...$fim"
 squid3 -k reconfigure 1>/dev/null 2>/dev/null
 service ssh restart 1>/dev/null 2>/dev/null
 service squid3 restart 1>/dev/null 2>/dev/null
@@ -216,7 +216,7 @@ http_port $spt2
 http_port $spt3
 http_port $spt4
 
-visible_hostname PROXYSERVER
+visible_hostname Everton888.pr0xy
 
 forwarded_for off
 pipeline_prefetch on
@@ -224,7 +224,7 @@ pipeline_prefetch on
 sleep 1s
 echo -e "$azulClaro
 CONFIGURANDO...$fim"
-echo -e "$cyanClaro REINICIANDO SERVIÇOS...$fim"
+echo -e "$cyanClaro REINICIANDO SERVIÃ‡OS...$fim"
 squid -k reconfigure 1>/dev/null 2>/dev/null
 service ssh restart 1>/dev/null 2>/dev/null
 service squid restart 1>/dev/null 2>/dev/null
@@ -241,11 +241,11 @@ rm $_portas2
 echo -e "$fim"
 sleep 1s
 if [ "$eth" != "" ]; then
-echo -e "\033[1;36mAplicar sistema para melhorar pacotes ssh? Pode ocorrer erros no ssh por conta dessa opção!
+echo -e "\033[1;36mAplicar sistema para melhorar pacotes ssh? Pode ocorrer erros no ssh por conta dessa opÃ§Ã£o!
 [s/n]\033[0m"
 read -p ": " ssh
 if [ "$ssh" = "s" ]; then
-echo -e "$verde Correção de problemas de pacotes no SSH...$fim"
+echo -e "$verde CorreÃ§Ã£o de problemas de pacotes no SSH...$fim"
 apt-get install ethtool -y 1>/dev/null 2>/dev/null
 interface="$eth"
  if [ "$interface" = "" ]
