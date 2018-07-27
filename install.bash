@@ -47,9 +47,6 @@ clear
 sleep 1
 echo -e "\033[01;32m INICIANDO....."
 sleep 1
-cd /bin 
-dos2unix ovpn.bash
-cd
 ovpn.bash
 fi
 if [ "$solo" = "n" ]; then
