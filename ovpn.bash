@@ -303,13 +303,11 @@ rm -rf /etc/openvpn
 rm -rf /usr/share/doc/openvpn*
 echo ""
 echo "OpenVPN removido!"
-adm
 exit
 else
 echo ""
 echo "Remoção abordada!"
 fi
-adm
 exit;;
  0)
 FILE=/bin/adm
