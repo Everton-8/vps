@@ -41,13 +41,16 @@ read -p "DESEJA INICIAR A INSTALAÇÃO DO OPENVPN? (s|n): " solo
 if [ "$solo" = "s" ]; then
 clear
 rm /bin/ovpn/ &>/dev/null
-wget -O /bin/ovpn -o /dev/null https://raw.githubusercontent.com/Everton-8/vps/master/ovpn
-chmod +x /bin/ovpn
+wget -O /bin/ovpn -o /dev/null https://raw.githubusercontent.com/Everton-8/vps/master/ovpn.bash
+chmod +x /bin/ovpn.bash
 clear
 sleep 1
 echo -e "\033[01;32m INICIANDO....."
 sleep 1
-ovpn
+cd /bin 
+dos2unix ovpn.bash
+cd
+ovpn.bash
 fi
 if [ "$solo" = "n" ]; then
 clear
