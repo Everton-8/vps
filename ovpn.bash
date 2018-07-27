@@ -1,4 +1,7 @@
 #!/bin/bash
+#R3V1V3R
+#@judiba
+
 if readlink /proc/$$/exe | grep -qs "dash"; then
 	echo "This script needs to be run with bash, not sh"
 	exit 1
@@ -94,7 +97,7 @@ else
 	if echo $(id) |grep sudo > /dev/null
 	then
 	clear
-	echo "Voce n„o È root"
+	echo "Voce n√£o √© root"
 	echo "Seu usuario esta no grupo sudo"
 	echo -e "Para virar root execute \033[1;31msudo su\033[0m"
 	exit
@@ -106,34 +109,34 @@ else
 fi
 
 clear
-echo -e "\033[36;37m PAINEL DE GERENCIAMENTO DO OPENVPN, OS ARQUIVOS SER√O SALVOS NA PASTA ROOT\033[0m"
+echo -e "\033[36;37m PAINEL DE GERENCIAMENTO DO OPENVPN, OS ARQUIVOS SER√ÉO SALVOS NA PASTA ROOT\033[0m"
 echo -e "\033[01;31m BY @e8th4eve, @Fenix_linuxr"
-echo -e "\033[01;31m ModificaÁıes e adaptaÁıes por Kingsman"
+echo -e "\033[01;31m Modifica√ß√µes e adapta√ß√µes por Kingsman"
 echo -e "\033[0;35m------------------------------------------------------------\033[0m"
-echo -e "\033[1;36m[\033[1;31m1\033[1;36m] CRIAR USU¡RIO \033[1;30m(CRIA USU¡RIOS)\033[1;36m
-[\033[1;31m2\033[1;36m] REMOVER USU¡RIO \033[1;30m(REMOVE UM USU¡RIO)\033[1;36m
-[\033[1;31m3\033[1;36m] REMOVER TODOS OS USU¡RIOS \033[1;30m(REMOVE TODOS OS USU¡RIOS)\033[1;36m
+echo -e "\033[1;36m[\033[1;31m1\033[1;36m] CRIAR USU√ÅRIO \033[1;30m(CRIA USU√ÅRIOS)\033[1;36m
+[\033[1;31m2\033[1;36m] REMOVER USU√ÅRIO \033[1;30m(REMOVE UM USU√ÅRIO)\033[1;36m
+[\033[1;31m3\033[1;36m] REMOVER TODOS OS USU√ÅRIOS \033[1;30m(REMOVE TODOS OS USU√ÅRIOS)\033[1;36m
 [\033[1;31m4\033[1;36m] REMOVER OPENVPN \033[1;30m(DESINSTALA O OPENVPN)\033[1;36m
-[\033[1;31m5\033[1;36m] ELIMINAR VENCIDOS \033[1;30m(ELIMINA TODOS OS USU¡RIOS VENCIDOS)\033[1;36m
-[\033[1;31m6\033[1;36m] MUDAR DATA DE UM USU¡RIO \033[1;30m(ALTERA A DATA DE VENCIMENTO DE UM USU¡RIO)\033[1;36m
-[\033[1;31m7\033[1;36m] EDITAR USU¡RIO \033[1;30m(MUDA A CONFIGURA«√O DE UM CLIENTE GERADO)\033[1;36m
-[\033[1;31m8\033[1;36m] MONITOR DE USU¡RIOS OPENVPN \033[1;30m(MONITORA OS CLIENTES GERADOS)\033[1;36m
-[\033[1;31m9\033[1;36m] REINICIAR OPENVPN\033[1;30m(REINICIA OS SERVI«OS OPENVPN)\033[1;36m
+[\033[1;31m5\033[1;36m] ELIMINAR VENCIDOS \033[1;30m(ELIMINA TODOS OS USU√ÅRIOS VENCIDOS)\033[1;36m
+[\033[1;31m6\033[1;36m] MUDAR DATA DE UM USU√ÅRIO \033[1;30m(ALTERA A DATA DE VENCIMENTO DE UM USU√ÅRIO)\033[1;36m
+[\033[1;31m7\033[1;36m] EDITAR USU√ÅRIO \033[1;30m(MUDA A CONFIGURA√á√ÉO DE UM CLIENTE GERADO)\033[1;36m
+[\033[1;31m8\033[1;36m] MONITOR DE USU√ÅRIOS OPENVPN \033[1;30m(MONITORA OS CLIENTES GERADOS)\033[1;36m
+[\033[1;31m9\033[1;36m] REINICIAR OPENVPN\033[1;30m(REINICIA OS SERVI√áOS OPENVPN)\033[1;36m
 [\033[1;31m0\033[1;36m] VOLTAR \033[1;30m(RETORNA AO MENU PRINCIPAL)\033[0m"
 echo -e "\033[0;35m------------------------------------------------------------\033[0m"
-echo -e "\033[1;36mO QU  DESEJA FAZER?\033[0m"
+echo -e "\033[1;36mO QU√ä DESEJA FAZER?\033[0m"
 read -p ": " opcao
 
 case $opcao in
   1) 
 echo -e "\033[1;33m"
-echo "NOME DO NOVO USU¡RIO?"
-echo -e "\033[1;31mUse somente o nome sem caracteres especiais | Este usu·rio tambÈm pode ser usado para SSH!\033[0m"
-read -p "Nome do usu·rio: " CLIENT
+echo "NOME DO NOVO USU√ÅRIO?"
+echo -e "\033[1;31mUse somente o nome sem caracteres especiais | Este usu√°rio tamb√©m pode ser usado para SSH!\033[0m"
+read -p "Nome do usu√°rio: " CLIENT
 awk -F : ' { print $1 }' /etc/passwd > /tmp/users
 if grep -Fxq "$CLIENT" /tmp/users
 then
-echo -e "\033[1;31mUsu·rio ja existente em seu servidor!\033[0m"
+echo -e "\033[1;31mUsu√°rio ja existente em seu servidor!\033[0m"
 sleep 5s
 ovpn
 exit
@@ -145,14 +148,14 @@ cd /etc/openvpn/easy-rsa/
 ./easyrsa build-client-full $CLIENT nopass
 newclient "$CLIENT"
 echo ""
-echo "Client $CLIENT KEY DISPONÕVEL" ~/"$CLIENT.ovpn"
+echo "Client $CLIENT KEY DISPON√çVEL" ~/"$CLIENT.ovpn"
 #####Sistema datagem
 echo -e "\033[1;31mDefinir tempo de validade(em dias)? 
 [s/n]\033[0m"
 read -p ": " simounao
 if [ "$simounao" = "s" ]
 then
-echo -e "\033[1;32mQuantos dias usu·rio $CLIENT deve durar:\033[0;37m"
+echo -e "\033[1;32mQuantos dias usu√°rio $CLIENT deve durar:\033[0;37m"
 read -p " " daysrnf
 echo -e "\033[0m"
 valid=$(date '+%C%y-%m-%d' -d " +$daysrnf days")
@@ -164,7 +167,7 @@ touch /etc/VpsPackdir/limite/$CLIENT
 echo -e "$senha" > /etc/VpsPackdir/senha/$CLIENT
 echo -e "OPENVPN" > /etc/VpsPackdir/limite/$CLIENT
 echo -e "\033[1;36mCRIADO COM SUCESSO \033[0m"
-echo -e "\033[1;36mPara encontrar o arquivo v· no menu do ADM>2>8 \033[0m"
+echo -e "\033[1;36mPara encontrar o arquivo v√° no menu do ADM>2>8 \033[0m"
 sleep 4s
 ovpn
 exit
@@ -176,7 +179,7 @@ touch /etc/VpsPackdir/limite/$CLIENT
 echo -e "$senha" > /etc/VpsPackdir/senha/$CLIENT
 echo -e "OPENVPN" > /etc/VpsPackdir/limite/$CLIENT
 echo -e "\033[1;36mCRIADO COM SUCESSO \033[0m"
-echo -e "\033[1;36mPara encontrar o arquivo v· no menu do ADM>2>8 \033[0m"
+echo -e "\033[1;36mPara encontrar o arquivo v√° no menu do ADM>2>8 \033[0m"
 ovpn
 exit
 fi
@@ -186,23 +189,23 @@ echo -e "\033[1;33m"
 NUMBEROFCLIENTS=$(tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep -c "^V")
 if [[ "$NUMBEROFCLIENTS" = '0' ]]; then
 echo ""
-echo "N√O H¡ USU¡RIOS AINDA"
+echo "N√ÉO H√Å USU√ÅRIOS AINDA"
 echo -e "\033[0m"
 ovpn
 exit
 	fi
 echo -e "\033[1;36m"
-echo "Selecione um usu·rio para remover"
+echo "Selecione um usu√°rio para remover"
 tail -n +2 /etc/openvpn/easy-rsa/pki/index.txt | grep "^V" | cut -d '=' -f 2 | nl -s ') '
 if [[ "$NUMBEROFCLIENTS" = '1' ]]; then
-read -p "Selecione um usu·rio [1]: " CLIENTNUMBER
+read -p "Selecione um usu√°rio [1]: " CLIENTNUMBER
 else
-read -p "Selecione um usu·rio [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
+read -p "Selecione um usu√°rio [1-$NUMBEROFCLIENTS]: " CLIENTNUMBER
 fi
 if [ "$CLIENTNUMBER" = "" ]
 then
 echo -e "\033[1;31m"
-echo "NENHUM USU¡RIO FOI SELECIONADO"
+echo "NENHUM USU√ÅRIO FOI SELECIONADO"
 echo -e "\033[0m"
 sleep 4s
 ovpn
@@ -262,7 +265,7 @@ ovpn
 exit;;
   4) 
 			echo ""
-read -p "VocÍ realmente deseja remover o OpenVPN? [y/n]: " -e -i n REMOVE
+read -p "Voc√™ realmente deseja remover o OpenVPN? [y/n]: " -e -i n REMOVE
 if [[ "$REMOVE" = 'y' ]]; then
 PORT=$(grep '^port ' /etc/openvpn/server.conf | cut -d " " -f 2)
 PROTOCOL=$(grep '^proto ' /etc/openvpn/server.conf | cut -d " " -f 2)
@@ -304,7 +307,7 @@ adm
 exit
 else
 echo ""
-echo "RemoÁ„o abordada!"
+echo "Remo√ß√£o abordada!"
 fi
 adm
 exit;;
@@ -320,7 +323,7 @@ exit;;
 cat /etc/passwd |grep ovpn > /tmp/ovpn
 datenow=$(date +%s)
 tput setaf 7 ; tput setab 2 ; tput bold ; printf '%45s%-10s%-5s\n' "Removedor de contas expiradas" ""
-printf '%-20s%-25s%-20s\n' "Usu·rio" "Data de expiraÁ„o" "Estado/AÁ„o" ; echo "" ; tput sgr0
+printf '%-20s%-25s%-20s\n' "Usu√°rio" "Data de expira√ß√£o" "Estado/A√ß√£o" ; echo "" ; tput sgr0
 for user in $(awk -F: '{print $1}' /tmp/ovpn); do
 	expdate=$(chage -l $user|awk -F: '/Account expires/{print $2}')
 	echo $expdate|grep -q never && continue
@@ -329,7 +332,7 @@ for user in $(awk -F: '{print $1}' /tmp/ovpn); do
 	expsec=$(date +%s --date="$expdate")
 	diff=$(echo $datenow - $expsec|bc -l)
 	tput setaf 2 ; tput bold
-	echo $diff|grep -q ^\- && echo "Ativo (N„o removido)" && continue
+	echo $diff|grep -q ^\- && echo "Ativo (N√£o removido)" && continue
 	tput setaf 1 ; tput bold
 echo "Expirado (Removido)"
 cd /etc/openvpn/easy-rsa/
@@ -355,23 +358,23 @@ exit
 ;;
 6)
 cat /etc/passwd |grep ovpn > /tmp/ovpn
-echo -e "\033[1;33mUSU¡RIOS"
+echo -e "\033[1;33mUSU√ÅRIOS"
 SDK=$(awk -F: '{print $1}' /tmp/ovpn)
 if [ "$SDK" = "" ]
 then
-echo -e "\033[1;31mVOCE N√O TEM USU¡RIOS PARA MUDAR A DATA!\033[0m"
+echo -e "\033[1;31mVOCE N√ÉO TEM USU√ÅRIOS PARA MUDAR A DATA!\033[0m"
 ovpn
 exit
  else
 echo -e "\033[1;31m_____________________________"
 awk -F: '{print $1}' /tmp/ovpn
 echo -e "\033[1;31m_____________________________"
-echo -e "\033[1;36mNOME DO USU¡RIO\033[0m"
+echo -e "\033[1;36mNOME DO USU√ÅRIO\033[0m"
 read -p ": " namer
-echo -e "\033[1;36mDIGITE A NOVA DATA EM N⁄MEROS\033[0m"
+echo -e "\033[1;36mDIGITE A NOVA DATA EM N√öMEROS\033[0m"
 echo -e "\033[1;36mDIA?\033[0m"
 read -p ": " dia
-echo -e "\033[1;36mM S?\033[0m"
+echo -e "\033[1;36mM√äS?\033[0m"
 read -p ": " mes
 echo -e "\033[1;36mANO?\033[0m"
 read -p ": " ano
@@ -396,7 +399,7 @@ echo -e "\033[1;33m__________________________________________\033[0m"
 echo -e "\033[1;33mVALOR A ALTERAR!"
 read -p ": " valor1
 if [ "$valor1" = "" ]; then
-echo -e "\033[1;31mN„o digitou nada!!!"
+echo -e "\033[1;31mN√£o digitou nada!!!"
 ovpn
 exit
 fi
@@ -405,7 +408,7 @@ read -p ": " valor2
 sed -i "s/$valor1/$valor2/g" /etc/openvpn/client-common.txt
 testt=$(cat /etc/openvpn/client-common.txt |egrep -o $valor2)
 if [ "$testt" = "" ]; then
-echo -e "\033[1;31mNAO ALTERADO VOC  DIGITOU ERRADO O VALOR A ALTERAR!"
+echo -e "\033[1;31mNAO ALTERADO VOC√ä DIGITOU ERRADO O VALOR A ALTERAR!"
 sleep 5s
 else
 echo -e "\033[1;36mSUCESSO, VALOR ALTERADO!"
@@ -450,7 +453,7 @@ chmod 777 /etc/init.d/openvpn
 /etc/init.d/openvpn start
 ;;
  *)
-tput setaf 7 ; tput setab 4 ; tput bold ; printf '%44s%s%-20s\n' "OP«√O INV¡LIDA..." ; tput sgr0
+tput setaf 7 ; tput setab 4 ; tput bold ; printf '%44s%s%-20s\n' "OP√á√ÉO INV√ÅLIDA..." ; tput sgr0
 sleep 1
 exit;;
 esac
@@ -458,12 +461,12 @@ esac
 else
 	clear
 echo -e "\033[1;33m"
-echo 'OPENVPN N√O EST¡ INSTALADO, DESEJA CONTINUAR?'
+echo 'OPENVPN N√ÉO EST√Å INSTALADO, DESEJA CONTINUAR?'
 echo -e "\033[0m[s/n]"
 read -p ": " sni
 case $sni in
 (n|N)
-echo -e "\033[1;31mABORTANDO INSTALA«√O\033[0m"
+echo -e "\033[1;31mABORTANDO INSTALA√á√ÉO\033[0m"
 sleep 4s
 exit
 exit
@@ -477,20 +480,20 @@ mkdir /etc/adm/modulo
 clear
 ;;
 *)
-echo -e "\033[1;31mABORTANDO INSTALA«√O\033[0m"
+echo -e "\033[1;31mABORTANDO INSTALA√á√ÉO\033[0m"
 sleep 4s
 exit
 exit
 ;;
 esac
  echo -e "\033[1;31m"
-	echo "Responda ‡s perguntas para iniciar a instalaÁ„o"
+	echo "Responda √†s perguntas para iniciar a instala√ß√£o"
 	echo "Responda corretamente"
 	echo ""
-echo -e "\033[1;33mPrimeiro precisaremos do ip de sua m·quina,este ip est· correto?\033[0m"
-	read -p "EndereÁo IP: " -e -i $IP IP
+echo -e "\033[1;33mPrimeiro precisaremos do ip de sua m√°quina,este ip est√° correto?\033[0m"
+	read -p "Endere√ßo IP: " -e -i $IP IP
 	echo ""
-echo -e "\033[1;31mQual protocolo vocÍ deseja usar para ‡s conexıes OPENVPN?"
+echo -e "\033[1;31mQual protocolo voc√™ deseja usar para √†s conex√µes OPENVPN?"
 echo -e "\033[1;33m   1) UDP"
 echo -e "   2) TCP (Recomendado)"
 echo -e "\033[0m"
@@ -510,7 +513,7 @@ echo -e "\033[0m"
 echo -e "\033[1;33mQual porta voce deseja usar ?\033[0m"
 	read -p "Port: " -e -i 1194 pt
 	echo ""
-echo -e "\033[1;31mO SCRIPT VAI VERIFICAR SE A PORTA\033[1;33m $pt\033[1;31m EST¡ SENDO USADA, PARA EVITAR PROBLEMAS!\033[0m"
+echo -e "\033[1;31mO SCRIPT VAI VERIFICAR SE A PORTA\033[1;33m $pt\033[1;31m EST√Å SENDO USADA, PARA EVITAR PROBLEMAS!\033[0m"
 sleep 3s
 if [[ -e /etc/ssh/sshd_config ]]; then
 var1=$(cat /etc/ssh/sshd_config |egrep -o "Port $pt" |wc -l)
@@ -562,7 +565,7 @@ exit
 fi
 PORT="$pt"
 echo -e "\033[1;33m
-Qual DNS vocÍ deseja usar?
+Qual DNS voc√™ deseja usar?
 \033[1;31m  1)\033[1;33m Sistema(Recomendado)
 \033[1;31m  2)\033[1;33m Google
 \033[1;31m  3)\033[1;33m OpenDNS
@@ -596,7 +599,7 @@ DNS="1"
  fi
 fi
 echo ""
-	echo "Agora o openvpn est· pronto para ser executado "
+	echo "Agora o openvpn est√° pronto para ser executado "
 	read -n1 -r -p "Pressione qualquer tecla para continuar..."
 	if [[ "$OS" = 'debian' ]]; then
 		apt-get upgrade
@@ -783,7 +786,7 @@ enec="2"
 fi
 case $enec in
 1)
-echo -e "\033[1;31m¿S CONFIGURA«’ES GERADAS AUTOMATICAMENTE USAR√O O \033[1;33mPROXY $IP NA PORTA 80\033[1;31m DESEJA ALTERAR A PORTA?\033[0m"
+echo -e "\033[1;31m√ÄS CONFIGURA√á√ïES GERADAS AUTOMATICAMENTE USAR√ÉO O \033[1;33mPROXY $IP NA PORTA 80\033[1;31m DESEJA ALTERAR A PORTA?\033[0m"
 read -p "[s/n] 
 " portass
 if [ "$portass" = "s" ]; then
@@ -799,7 +802,7 @@ proxxy="$IP"
 fi
 ;;
 2)
-echo -e "\033[1;31mN√O FOI IDENTIFICADO PROXY SQUID EM SUA VPS, DESEJA INSTAL¡-LO?\033[0m"
+echo -e "\033[1;31mN√ÉO FOI IDENTIFICADO PROXY SQUID EM SUA VPS, DESEJA INSTAL√Å-LO?\033[0m"
 read -p "[s/n] 
 " squiid
 if [ "$squiid" = "s" ]; then
@@ -809,10 +812,10 @@ sleep 1
 sq3
 proxxy="$IP"
 else
-echo -e "\033[1;31mOK, o openvpn precisa de um PROXY para a configuraÁ„o padr„o, qual ser· o proxy?\033[0m"
+echo -e "\033[1;31mOK, o openvpn precisa de um PROXY para a configura√ß√£o padr√£o, qual ser√° o proxy?\033[0m"
 read -p "Digite o PROXY: " proxxy
 fi
-echo -e "\033[1;31m¿S CONFIGURA«’ES GERADAS AUTOMATICAMENTE USAR√O O \033[1;33mPROXY $proxxy NA PORTA 80\033[1;31m DESEJA ALTERAR A PORTA?\033[0m"
+echo -e "\033[1;31m√ÄS CONFIGURA√á√ïES GERADAS AUTOMATICAMENTE USAR√ÉO O \033[1;33mPROXY $proxxy NA PORTA 80\033[1;31m DESEJA ALTERAR A PORTA?\033[0m"
 read -p "[s/n] 
 " portass
 if [ "$portass" = "s" ]; then
@@ -826,12 +829,12 @@ xyz="80"
 fi
 ;;
 esac
-echo -e "\033[1;31mO HOST DO ARQUIVO PADR√O … \033[1;33mm.facebook.com\033[1;31m DESEJA ALTERAR?\033[0m"
+echo -e "\033[1;31mO HOST DO ARQUIVO PADR√ÉO √â \033[1;33mm.facebook.com\033[1;31m DESEJA ALTERAR?\033[0m"
 read -p "[s/n]
 " sinounot
 if [ "$sinounot" = "s" ]; then
 echo -e "\033[1;31mDIGITE O NOVO HOST\033[0m"
-echo -e "\033[1;31m… necess·rio que ele comece com um .\033[0m"
+echo -e "\033[1;31m√â necess√°rio que ele comece com um .\033[0m"
 echo -e "\033[1;31mExemplo: .claromusica.com/\033[0m"
 read -p "Digite o Host: " hostx
  else
